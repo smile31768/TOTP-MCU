@@ -8,10 +8,9 @@ int main() {
     SystemCoreClockUpdate();
     Delay_Init();
     USART_Printf_Init(115200);
-    unsigned char hex[] = {0x4d, 0x79, 0x4c, 0x65, 0x67,
-                           0x6f, 0x44, 0x6f, 0x6f, 0x72};
+    unsigned char hmacKey[] = {0x4d, 0x79, 0x4c, 0x65, 0x67, 0x6f, 0x44, 0x6f, 0x6f, 0x72};
 
-    size_t length = sizeof(hex);
+    size_t length = sizeof(hmacKey);
 
     char* base32;
 
@@ -23,7 +22,7 @@ int main() {
     const char* b32_digits = "ABCDEFGHIJKLMNOPQRSTUVWXYZ234567";
 
     for (i = 0, index = 0; i < length; i++) {
-        buffer = (buffer << 8) | hex[i];
+        buffer = (buffer << 8) | hmacKey[i];
         bitsLeft += 8;
 
         while (bitsLeft >= 5) {
